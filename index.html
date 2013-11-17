@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Joel's Super Cool Sestina Helper</title>
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+<link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Gabriela::latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); 
+</script>
+<script type="text/javascript">
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
+  function generate() {
+    var words = [];
+    for(var i = 1; i < 7; i++){
+        var txt = document.getElementById(i);
+        words.push(txt.value);
+    }
+    shuffleArray(words);
+    var longline = "________________________________________";
+    longline = longline + longline;
+    var lines = [];
+    for(var i = 0; i < 6; i++){
+        lines.push("<p>" + longline + " " + words[i] + "</p>");
+    }
+    var orderedWordsHTML = "<div class=\"textbody_white\"><center><p><b>A:</b> " + words[0] + "<b>, B:</b> " + words[1] + "<b>, C:</b> " + words[2] + "<b>, D:</b> " + words[3] + "<b>, E:</b> " + words[4] + "<b>, F:</b> " + words[5] + "</p></center></div>";
+    var abcdef = "<h3>A B C D E F</h3><div class=\"textbody_black\"><center>" + lines[0] + lines[1] + lines[2] + lines[3] + lines[4] + lines[5] +"</center></div>";
+    var faebdc = "<h3>F A E B D C</h3><div class=\"textbody_black\"><center>" + lines[5] + lines[0] + lines[4] + lines[1] + lines[3] + lines[2] +"</center></div>";
+    var cfdabe = "<h3>C F D A B E</h3><div class=\"textbody_black\"><center>" + lines[2] + lines[5] + lines[3] + lines[0] + lines[1] + lines[4] +"</center></div>";
+    var ecbfad = "<h3>E C B F A D</h3><div class=\"textbody_black\"><center>" + lines[4] + lines[2] + lines[1] + lines[5] + lines[0] + lines[3] +"</center></div>";
+    var deacfb = "<h3>D E A C F B</h3><div class=\"textbody_black\"><center>" + lines[3] + lines[4] + lines[0] + lines[2] + lines[5] + lines[1] +"</center></div>";
+    var bdfeca = "<h3>B D F E C A</h3><div class=\"textbody_black\"><center>" + lines[1] + lines[3] + lines[5] + lines[4] + lines[2] + lines[0] +"</center></div>";
+    var envoi = "<div class=\"textbody_white\"><center><p>Choose <b>one</b> of the following envois:</p></center></div>";
+    var envoi1 = "<h3>Envoi: E C A</h3><div class=\"textbody_black\"><center>" + lines[4] + lines[2] + lines[0] + "<p>Remember to include <b>" + words[1] + ", " + words[3] + "</b> and <b>" + words[5] + "</b>.</p></center></div>";
+    var envoi2 = "<h3>Envoi: A C E</h3><div class=\"textbody_black\"><center>" + lines[0] + lines[2] + lines[4] + "<p>Remember to include <b>" + words[1] + ", " + words[3] + "</b> and <b>" + words[5] + "</b>.</p></center></div>";
+    document.getElementById("results").innerHTML = orderedWordsHTML + abcdef + faebdc + cfdabe + ecbfad + deacfb + bdfeca + envoi + envoi1 + envoi2;
+  }
+</script>
+</head>
+<body>
+<div id="topbar"><div id="top_header">
+    <h1>Joel's Super Cool Sestina Helper</h1>
+</div></div>
+<div id="main">
+<div class="textbody_white">
+<p><b>Sestinas</b> are really cool, but working out the permutations of the six words can be tiring. This tool will give randomly-generated stanza endings, obeying the rules, for a sestina using your chosen six words - hopefully you'll be able to write around them.</p>
+<p>Just whack your words in the boxes below and hit the button!</p>
+</div>
+<div class="textbody_white">
+  <center>
+  <table>
+    <tr>
+      <td><input type="text" id="1"></td>
+      <td><input type="text" id="2"></td>
+      <td><input type="text" id="3"></td>
+    </tr><tr>
+      <td><input type="text" id="4"></td>
+      <td><input type="text" id="5"></td>
+      <td><input type="text" id="6"></td>
+    </tr>
+  </table>
+  <p><button onclick="generate()"><b>Sestina me!</b></button></p></center>
+</div>
+<div id="results"></div>
+</div>
+<div id="footer">
+<p>Tool designed and built by <a href="http://www.twitter.com/JoelOtter">Joel Auterson</a>. Hope it helped (or at least provided some entertainment).</p>
+</div></div>
+</body>
+</html>
